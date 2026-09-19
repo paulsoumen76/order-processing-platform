@@ -8,6 +8,18 @@ spring:
     bootstrap-servers: localhost:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
       properties:
         spring.json.add.type.headers: false
+        max.block.ms: 3000
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inventory_db
+    username: inventory_user
+    password: inventory_password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

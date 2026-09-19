@@ -4,10 +4,35 @@ server:
 spring:
   application:
     name: notification-service
+
   kafka:
     bootstrap-servers: localhost:9092
+
     consumer:
       group-id: notification-service
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring.json.trusted.packages: "com.orderprocessing.inventory.event,com.orderprocessing.notification.event"
+        spring.json.type.mapping: "com.orderprocessing.inventory.event.ProductSavedEvent:com.orderprocessing.notification.event.ProductSavedEvent"
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: paulsoumen76@gmail.com
+    password: vzbd fsrk rfvz ihvb
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inventory_db
+    username: inventory_user
+    password: inventory_password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

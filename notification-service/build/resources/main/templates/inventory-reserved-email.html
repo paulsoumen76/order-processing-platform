@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Reservation</title>
+</head>
+
+<body>
+
+<h2 th:if="${reserved}">
+    Inventory Reserved Successfully
+</h2>
+
+<h2 th:unless="${reserved}">
+    Inventory Reservation Failed
+</h2>
+
+<p>
+    <strong>Order ID:</strong>
+    <span th:text="${orderId}"></span>
+</p>
+
+<p>
+    <strong>Product ID:</strong>
+    <span th:text="${productId}"></span>
+</p>
+
+<p>
+    <strong>Quantity:</strong>
+    <span th:text="${quantity}"></span>
+</p>
+
+<p th:if="${reserved}">
+    Your inventory has been successfully reserved.
+</p>
+
+<p th:unless="${reserved}">
+    Unfortunately, the requested inventory could not be reserved.
+</p>
+
+</body>
+
+</html>

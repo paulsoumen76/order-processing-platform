@@ -1,2 +1,2 @@
 rootProject.name = 'order-processing-platform'
-include 'order-service', 'inventory-service', 'notification-service'
+include 'order-service', 'inventory-service', 'notification-service', 'api-gateway', 'payment-gateway-service'

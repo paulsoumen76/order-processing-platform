@@ -11,6 +11,29 @@ spring:
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        max.block.ms: 3000
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inventory_db
+    username: inventory_user
+    password: inventory_password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+storage:
+  r2:
+    endpoint: https://12e58df16193830b1fe487006c7630f4.r2.cloudflarestorage.com
+    access-key: 728a1f01b426dca4df67c32e25f8d4b3
+    secret-key: 2cd324fbeed474484d95002cf4267badec66c9f1ea7e56ab89afe669a2d4d802
+    bucket: order-processing-images
+
+
