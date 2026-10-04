@@ -43,5 +43,13 @@ spring:
           filters:
             - StripPrefix=1
 
+        #Ai Assistant Service
+        - id: ai-assistant-service
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/ai/**
+          filters:
+            - StripPrefix=1
+
       default-filters:
         - AddResponseHeader=X-Gateway, order-processing-api-gateway

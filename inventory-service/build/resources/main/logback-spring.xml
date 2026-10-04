@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+    <springProperty
+            name="serviceName"
+            source="spring.application.name"
+            defaultValue="inventory-service"/>
+
+    <!-- Console JSON logs -->
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+
+            <providers>
+
+                <timestamp>
+                    <fieldName>@timestamp</fieldName>
+                </timestamp>
+
+                <logLevel>
+                    <fieldName>level</fieldName>
+                </logLevel>
+
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                </loggerName>
+
+                <threadName>
+                    <fieldName>thread</fieldName>
+                </threadName>
+
+                <message/>
+
+                <mdc/>
+
+                <stackTrace/>
+
+                <globalCustomFields>
+                    <customFields>
+                        {
+                        "service":"${serviceName}"
+                        }
+                    </customFields>
+                </globalCustomFields>
+
+            </providers>
+
+        </encoder>
+
+    </appender>
+
+
+    <!-- JSON file logs for Logstash -->
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>logs/inventory-service.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/inventory-service.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+
+            <providers>
+
+                <timestamp>
+                    <fieldName>@timestamp</fieldName>
+                </timestamp>
+
+                <logLevel>
+                    <fieldName>level</fieldName>
+                </logLevel>
+
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                </loggerName>
+
+                <threadName>
+                    <fieldName>thread</fieldName>
+                </threadName>
+
+                <message/>
+
+                <mdc/>
+
+                <stackTrace/>
+
+                <globalCustomFields>
+                    <customFields>
+                        {
+                        "service":"${serviceName}"
+                        }
+                    </customFields>
+                </globalCustomFields>
+
+            </providers>
+
+        </encoder>
+
+    </appender>
+
+
+    <!-- Send logs to both Console and File -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>

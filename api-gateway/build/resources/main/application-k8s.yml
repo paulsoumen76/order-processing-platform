@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    web-application-type: reactive
+
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+
+        - id: inventory-service
+          uri: http://inventory-service:8082
+          predicates:
+            - Path=/api/inventory/**
+          filters:
+            - StripPrefix=1
+
+      default-filters:
+        - AddResponseHeader=X-Gateway, order-processing-api-gateway
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info

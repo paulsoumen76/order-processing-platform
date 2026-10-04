@@ -1,0 +1,16 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: ai-assistant-service
+
+openai:
+  api-key: ${OPENAI_API_KEY}
+
+services:
+  inventory:
+    base-url: http://localhost:8082
+
+  order:
+    base-url: http://localhost:8081

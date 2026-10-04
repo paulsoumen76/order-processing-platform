@@ -1,0 +1,9 @@
+dependencies {
+
+    // REST API
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // OpenAI Java SDK
+    implementation 'com.openai:openai-java:4.70.0'
+
+}

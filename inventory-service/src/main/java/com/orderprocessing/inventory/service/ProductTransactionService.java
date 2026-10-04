@@ -10,6 +10,7 @@ import com.orderprocessing.inventory.event.ProductSavedEvent;
 import com.orderprocessing.inventory.exception.ProductAlreadyExistsException;
 import com.orderprocessing.inventory.exception.ProductDeletionNotAllowedException;
 import com.orderprocessing.inventory.exception.ProductNotFoundException;
+import com.orderprocessing.inventory.logging.LogExecution;
 import com.orderprocessing.inventory.model.*;
 import com.orderprocessing.inventory.repository.OutboxEventRepository;
 import com.orderprocessing.inventory.repository.ProductRepository;
@@ -46,6 +47,7 @@ public class ProductTransactionService {
     }
 
     @Transactional
+    @LogExecution
     public ProductResponse saveProduct(
             CreateProductRequest request,
             String imageKey) {
@@ -142,6 +144,7 @@ public class ProductTransactionService {
                 savedProduct.getProductName(),
                 savedProduct.getPrice(),
                 savedProduct.getQuantity(),
+                savedProduct.getTrackingType(),
                 savedProduct.getNotificationEmail(),
                 savedProduct.getNotificationMobile(),
                 null,

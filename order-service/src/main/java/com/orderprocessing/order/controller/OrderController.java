@@ -29,7 +29,12 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 Map.of(
                         "orderId", order.getOrderId(),
-                        "status", order.getStatus().name()
+                        "status", order.getStatus().name(),
+                        "productId", order.getProductId(),
+                        "quantity", order.getQuantity(),
+                        "amount", order.getAmount(),
+                        "notificationEmail", request.notificationEmail(),
+                        "createdAt", order.getCreatedAt()
                 )
         );
     }
