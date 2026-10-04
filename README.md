@@ -1,4 +1,4 @@
-# Order Processing Platform — Spring Boot + Kafka
+# Order Processing Platform — Spring Boot + Kafka 
 
 Three services demonstrate an event-driven flow:
 
